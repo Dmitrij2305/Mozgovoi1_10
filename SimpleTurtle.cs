@@ -62,7 +62,7 @@ namespace Mozgovoi1_10
             isPenDown = false;
         }
 
-        public void Go(int distance)
+        public void Forward(int distance)
         {
             int dx = (int)(distance * Math.Cos(currentAngle));
             int dy = -(int)(distance * Math.Sin(currentAngle));
@@ -74,14 +74,14 @@ namespace Mozgovoi1_10
                 canvas.DrawLine(pen, oldPosition, currentPosition);
         }
 
-        public void TurnLeft(double angle)
+        public void TurnLeft(double angleInDegrees)
         {
-            this.currentAngle += angle; 
+            this.currentAngle += angleInDegrees * Math.PI / 180; 
         }
 
-        public void TurnRight(double angle)
+        public void TurnRight(double angleInDegrees)
         {
-            this.currentAngle -= angle;
+            this.currentAngle -= angleInDegrees * Math.PI / 180;
         }
     }
 }

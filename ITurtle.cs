@@ -11,7 +11,7 @@ namespace Mozgovoi1_10
         void PenUp();
         void PenDown();
 
-        void Go(int distance);
+        void Forward(int distance);
 
         void TurnLeft(double angle);
         void TurnRight(double angle);

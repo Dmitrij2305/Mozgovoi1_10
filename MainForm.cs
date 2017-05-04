@@ -29,9 +29,10 @@ namespace Mozgovoi1_10
             turtle.PenDown();
             for (int i = 0; i < anglesCount; i++)
             {
-                turtle.Go(sideLength);
-                turtle.TurnRight(2 * Math.PI / anglesCount);
+                turtle.Forward(sideLength);
+                turtle.TurnRight(360 / anglesCount);
             }
+            turtle.PenUp();
         }
     }
 }
