@@ -44,6 +44,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Command.cs" />
     <Compile Include="ICommand.cs" />
     <Compile Include="ITurtle.cs" />
     <Compile Include="MainForm.cs">
@@ -57,6 +58,7 @@
     <Compile Include="SmoothTurtle.cs" />
     <Compile Include="SimpleTurtle.cs" />
     <Compile Include="StepData.cs" />
+    <Compile Include="Turtle.cs" />
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>

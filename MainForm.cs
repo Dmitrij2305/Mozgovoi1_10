@@ -19,7 +19,7 @@ namespace Mozgovoi1_10
         {
             InitializeComponent();
             canvas = canvasPanel.CreateGraphics();
-            turtle = new SmoothTurtle(canvas, 200, 200);
+            turtle = new SimpleTurtle(canvas, 200, 200);
 
             DrawPolygon(3, 100);
         }
@@ -33,6 +33,13 @@ namespace Mozgovoi1_10
                 turtle.TurnRight(360 / anglesCount);
             }
             turtle.PenUp();
+
+
+        }
+
+        private void undoButton_Click(object sender, EventArgs e)
+        {
+            turtle.Undo();
         }
     }
 }

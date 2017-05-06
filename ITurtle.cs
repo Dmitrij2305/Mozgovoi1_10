@@ -15,5 +15,8 @@ namespace Mozgovoi1_10
 
         void TurnLeft(double angle);
         void TurnRight(double angle);
+
+        void Undo(int count);
+        void Undo();
     }
 }

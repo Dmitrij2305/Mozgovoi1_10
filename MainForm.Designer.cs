@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.canvasPanel = new System.Windows.Forms.Panel();
+            this.undoButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // canvasPanel
@@ -39,11 +40,22 @@
             this.canvasPanel.Size = new System.Drawing.Size(360, 309);
             this.canvasPanel.TabIndex = 0;
             // 
+            // undoButton
+            // 
+            this.undoButton.Location = new System.Drawing.Point(13, 329);
+            this.undoButton.Name = "undoButton";
+            this.undoButton.Size = new System.Drawing.Size(112, 23);
+            this.undoButton.TabIndex = 1;
+            this.undoButton.Text = "Отменить нафиг";
+            this.undoButton.UseVisualStyleBackColor = true;
+            this.undoButton.Click += new System.EventHandler(this.undoButton_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(389, 333);
+            this.ClientSize = new System.Drawing.Size(389, 368);
+            this.Controls.Add(this.undoButton);
             this.Controls.Add(this.canvasPanel);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
@@ -58,6 +70,7 @@
         #endregion
 
         private System.Windows.Forms.Panel canvasPanel;
+        private System.Windows.Forms.Button undoButton;
     }
 }
 

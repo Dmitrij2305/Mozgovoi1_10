@@ -7,81 +7,75 @@ using System.Drawing;
 
 namespace Mozgovoi1_10
 {
-    class SimpleTurtle : ITurtle
+    class SimpleTurtle : Turtle
     {
-        Graphics canvas;
+        #region Constructors
 
-        private Point currentPosition;
-        private double currentAngle;
-        private bool isPenDown;
-        private Pen pen;
-
-        public Point CurrentPosition
+        public SimpleTurtle(Graphics canvas, Point startPosition, double startAngle)
+            : base(canvas, startPosition, startAngle)
         {
-            get { return currentPosition; }
         }
 
-        public SimpleTurtle(Graphics canvas, Point startPosition, double startAngle, bool isPenDown)
-        {
-            this.canvas = canvas;
-            this.pen = new Pen(Color.Black, 2);
-
-            this.currentPosition = startPosition;
-
-            this.currentAngle = startAngle;
-            this.isPenDown = isPenDown;
-        }
-
-        public SimpleTurtle(Graphics canvas, int x, int y, double startAngle, bool isPenDown)
-            : this(canvas, new Point(x, y), startAngle, isPenDown)
+        public SimpleTurtle(Graphics canvas, int x, int y, double startAngle)
+            : base(canvas, new Point(x, y), startAngle)
         {
         }
 
         public SimpleTurtle(Graphics canvas, Point startPosition)
-            : this(canvas, startPosition, Math.PI / 2, false)
+            : base(canvas, startPosition, Math.PI / 2)
         {
         }
 
         public SimpleTurtle(Graphics canvas, int x, int y)
-            : this(canvas, new Point(x, y), Math.PI / 2, false)
+            : base(canvas, new Point(x, y), Math.PI / 2)
         {
         }
 
         public SimpleTurtle(Graphics canvas)
-            : this(canvas, 0, 0, Math.PI / 2, false)
+            : base(canvas, new Point(0, 0), Math.PI / 2)
         {
         }
 
-        public void PenDown()
+        #endregion
+
+        public override void PenDown()
         {
             isPenDown = true;
         }
 
-        public void PenUp()
+        public override void PenUp()
         {
             isPenDown = false;
         }
 
-        public void Forward(int distance)
+        public override void Forward(int distance)
         {
-            int dx = (int)(distance * Math.Cos(currentAngle));
-            int dy = -(int)(distance * Math.Sin(currentAngle));
-
-            Point oldPosition = currentPosition;
-            currentPosition.Offset(dx, dy);
-            
+            ICommand command = null;
             if (isPenDown)
-                canvas.DrawLine(pen, oldPosition, currentPosition);
+                command = new DrawCommand(this, distance);
+            else
+                command = new GoCommand(this, distance);
+
+            command.Do();
+            doneCommands.Push(command);
         }
 
-        public void TurnLeft(double angleInDegrees)
+        public override void TurnLeft(double angleInDegrees)
         {
-            this.currentAngle += angleInDegrees * Math.PI / 180; 
+            double angle = angleInDegrees * Math.PI / 180;
+            ICommand command = new TurnCommand(this, angle);
+
+            command.Do();
+            doneCommands.Push(command);
         }
 
-        public void TurnRight(double angleInDegrees)
+        public override void TurnRight(double angleInDegrees)
         {
-            this.currentAngle -= angleInDegrees * Math.PI / 180;
+            double angle = angleInDegrees * Math.PI / 180;
+            ICommand command = new TurnCommand(this, -angle);
+
+            command.Do();
+            doneCommands.Push(command);
         }
     }
 }
